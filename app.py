@@ -9,21 +9,21 @@ load_dotenv()
 app = Flask(__name__)
 db_url = os.getenv("DATABASE_URL")
 
-# This is the root endpoint to check if the API is running
+#checker endpoint to verify the API is running
 @app.route("/")
 def index():
     return "EduSentry API is alive!"
 
-# This is our critical endpoint for testing the database connection
+#checker endpoint to verify the database connection
 @app.route("/db_check")
 def db_check():
     conn = None
     try:
-        # Try to connect to the database
+        # connec to database
         conn = psycopg2.connect(db_url)
-        conn.close() # Immediately close the connection
-        # If successful, return a success message
+        conn.close()
+        # success!1!1
         return jsonify({"status": "success", "message": "Database connection successful."})
     except Exception as e:
-        # If it fails, return an error message
+        # err err err
         return jsonify({"status": "error", "message": f"Database connection failed: {e}"}), 500
