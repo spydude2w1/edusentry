@@ -2,6 +2,7 @@ import os
 import psycopg2
 from flask import Flask, jsonify
 from dotenv import load_dotenv
+import datetime  # gurt 
 
 #load
 load_dotenv() 
@@ -12,7 +13,9 @@ db_url = os.getenv("DATABASE_URL")
 #checker endpoint to verify the API is running
 @app.route("/")
 def index():
-    return "EduSentry API is alive!"
+    now = datetime.datetime.now()  # pingtimestamp
+    return f"EduSentry: API is running ✅ (Ping Timestamp: {now})"
+
 
 #checker endpoint to verify the database connection
 @app.route("/db_check")
